@@ -4,11 +4,19 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from blog.models import Post
-from blog.forms import PostForm
+from blog.forms import PostForm, CommentForm
 
 def get_post(request, slug):
   post = get_object_or_404(Post,slug=slug)
-  return render_to_response('post_detail.html', {'post': post}, RequestContext(request))
+  if request.method == 'POST':
+    form = CommentForm(request.POST)
+    if form.is_valid():
+      comment = form.save(commit=False)
+      comment.post = post
+      comment.save()
+  else:
+    form = CommentForm()
+  return render_to_response('post_detail.html', {'post': post, 'form': form}, RequestContext(request))
 
 
 def add_post(request):
@@ -18,8 +26,8 @@ def add_post(request):
       form.save()
       post = Post.objects.get(title=form.cleaned_data['title'])
       return HttpResponseRedirect(reverse('blog.views.get_post',args=(post.slug,)))
-  
-  form = PostForm()
+  else:
+    form = PostForm()
   return render_to_response('post_form.html', {'form':form}, RequestContext(request))
 
 def edit_post(request, slug):
@@ -33,7 +41,6 @@ def edit_post(request, slug):
       post.author = post_edited.author
       post.save()
       return HttpResponseRedirect(reverse('blog.views.get_post',args=(post.slug,)))
-
-  form = PostForm(instance=post)
+  else:
+    form = PostForm(instance=post)
   return render_to_response('post_form.html', {'form': form}, RequestContext(request))
-  
