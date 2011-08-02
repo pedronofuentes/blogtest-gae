@@ -3,11 +3,16 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-	<div class="grid_12" id="posts">
+	<div class="grid_10 push_1" id="posts">
+		<div class="tasks">
+			<a class="action" href="{% url blog.views.add_post %}">Create a post</a>
+		</div>
 	{% for post in post_list %}
-	<h2><a href="{% url blog.views.get_post post.slug %}">{{ post.title }}</a></h2>
-	<div class="extract">
-		{{ post.body|truncatewords:100}}
+	<div class="post">
+		<h2><a href="{% url blog.views.get_post post.slug %}">{{ post.title }}</a></h2>
+		<div class="extract">
+			{{ post.body|linebreaks|truncatewords:100}}
+		</div>
 	</div>
 	{% endfor %}
 	</div>

@@ -28,7 +28,7 @@ def add_post(request):
       return HttpResponseRedirect(reverse('blog.views.get_post',args=(post.slug,)))
   else:
     form = PostForm()
-  return render_to_response('post_form.html', {'form':form}, RequestContext(request))
+  return render_to_response('post_form.html', {'form':form, 'new':True}, RequestContext(request))
 
 def edit_post(request, id):
   post = get_object_or_404(Post, id=id)
@@ -43,7 +43,7 @@ def edit_post(request, id):
       return HttpResponseRedirect(reverse('blog.views.get_post',args=(post.slug,)))
   else:
     form = PostForm(instance=post)
-  return render_to_response('post_form.html', {'form': form}, RequestContext(request))
+  return render_to_response('post_form.html', {'form': form, 'new':False}, RequestContext(request))
 
 def delete_post(request, id):
   post = get_object_or_404(Post, id=id)

@@ -3,37 +3,45 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-	<div class="grid_12" id="breadcrumb">
+	<div class="grid_10 push_1" id="breadcrumb">
 		<a href="/">Home</a> >> {{ post.title }}
 	</div>
-	<div class="grid_12" id="post">
+	<div class="grid_10 push_1" id="post">
 	<h2>{{ post.title }}</h2>
 	<div class="tasks">
 		<a class="action" href="{% url blog.views.edit_post post.id %}">Edit post</a> <a class="delete" onclick="return confirm('Are you sure to delete this post?');" href="{% url blog.views.delete_post post.id %}">Delete post</a>
+	</div>
 	<div class="body">
-		{{ post.body}}
+		{{ post.body|linebreaks}}
 	</div>
 	<div id="author">
 		{{ post.author }} | {{ post.created|date }}
 	</div>
 	<h3>Comments</h3>
-	<div class="grid_10 push_2">
+	<div class="grid_8 push_1">
 		{% for comment in post.comment_set.all %}
-		<div class="comment_author">
-			{{ comment.author|default:"Anonymous" }} said:
-		</div>
-		<div class="coment_body">
-			{{ comment.body }}
-		</div>
-		<div class="time">
-			{{ comment.created }}
-		</div>
-		<div class="action">
-			<a class="delete" onclick="return confirm('Are you sure to delete this comment?');" href="{% url blog.views.delete_comment comment.id %}">Delete comment</a>
+		<div class="comment">
+			<div class="comment_author">
+				{{ comment.author|default:"Anonymous" }} said:
+			</div>
+			<div class="coment_body grid_7 push_1">
+				{{ comment.body|linebreaks }}
+			</div>
+			<div class="time grid_7 push_1">
+				{{ comment.created }}
+			</div>
+			<div class="clear"></div>
+			<div class="tasks">
+				<a class="delete" onclick="return confirm('Are you sure to delete this comment?');" href="{% url blog.views.delete_comment comment.id %}">Delete comment</a>
+			</div>
+				</div>
 		{% endfor %}
-		<form action="" method="post" accept-charset="utf-8">
-			{{ form.as_p }}
-			<p><input type="submit" value="Continue &rarr;"></p>
-		</form>
+		<div class="grid_8">
+			<p>Add a new comment:</p>
+			<form action="" method="post" accept-charset="utf-8">
+				{{ form.as_p }}
+				<p class="buttons"><input type="submit" value="Continue &rarr;"></p>
+			</form>
+		</div>
 	</div>
 {% endblock %}
