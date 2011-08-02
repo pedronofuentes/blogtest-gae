@@ -20,16 +20,21 @@
   </head>
 
   <body>
-	<div id="toolbar">
-		
-	</div>
 	<div id="wrapper" class="container_12">
+		<div id="toolbar">
+
+		</div>
+		<div id="header" class="grid_12">
+			<h1>Blog Test GAE</h1>
+		</div>
 		<div id="content" class="container_8">
-			
+			{% block content %}
+			{% endblock %}
 		</div>
 		
 		<div id="sidebar" class="container_4">
-			
+			{% block sidebar %}
+			{% endblock %}
 		</div>
 		<div class="clear"></div>
 	</div>
