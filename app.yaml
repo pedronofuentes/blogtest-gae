@@ -17,6 +17,10 @@ handlers:
 - url: /_ah/stats/.*
   script: djangoappengine/appstats/ui.py
 
+- url: /static/blog
+  static_dir: blog/media
+  expiration: '0'
+
 - url: /media/admin
   static_dir: django/contrib/admin/media
   expiration: '0'
