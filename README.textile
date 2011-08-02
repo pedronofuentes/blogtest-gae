@@ -1,0 +1,16 @@
+h1. Blog test GAE
+
+This is a simple blog developed with Django over Google App Engine.
+
+h2. Projects
+
+I used this projects to scaffold the blog:
+
+* django-nonrel
+* djangoappengine
+* djangotoolbox
+* django-autoload
+* django-dbindexer
+* django-testapp
+
+These projects are available at http://www.allbuttonspressed.com/projects/djangoappengine
