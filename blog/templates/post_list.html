@@ -5,7 +5,7 @@
 {% block content %}
 	<div class="grid_8" id="posts">
 	{% for post in post_list %}
-	<h2><a href="">{{ post.title }}</a></h2>
+	<h2><a href="{% url blog.views.get_post post.slug %}">{{ post.title }}</a></h2>
 	<div class="extract">
 		{{ post.body|truncatewords:100}}
 	</div>
