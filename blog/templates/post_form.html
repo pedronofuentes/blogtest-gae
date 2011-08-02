@@ -1,0 +1,10 @@
+{% extends 'blog_base.html' %}
+
+{% block title %}Post{% endblock %}
+
+{% block content %}
+	<form action="" method="post" accept-charset="utf-8">
+		{{ form.as_p }}
+		<p><input type="submit" value="Save &rarr;"></p>
+	</form>
+{% endblock %}

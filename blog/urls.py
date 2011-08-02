@@ -4,8 +4,9 @@ from django.views.generic import list_detail
 from blog.models import Post
 
 urlpatterns = patterns('blog.views',
-  ('^$', list_detail.object_list, {'queryset': Post.objects.order_by('-created'),
+  (r'^$', list_detail.object_list, {'queryset': Post.objects.order_by('-created'),
                                     'template_name': 'post_list.html',
                                     'template_object_name': 'post'}),
-  ('^post/(?P<slug>.+)', 'get_post'),
+  (r'^post/add$', 'add_post'),
+  (r'^post/(?P<slug>.+)', 'get_post'),
 )

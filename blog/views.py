@@ -9,3 +9,15 @@ from blog.forms import PostForm
 def get_post(request, slug):
   post = get_object_or_404(Post,slug=slug)
   return render_to_response('post_detail.html', {'post': post}, RequestContext(request))
+
+
+def add_post(request):
+  if request.method == 'POST':
+    form = PostForm(request.POST)
+    if form.is_valid():
+      form.save()
+      post = Post.objects.get(title=form.cleaned_data['title'])
+      return HttpResponseRedirect(reverse('blog.views.get_post',args=(post.slug,)))
+  
+  form = PostForm()
+  return render_to_response('post_form.html', {'form':form}, RequestContext(request))
