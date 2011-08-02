@@ -30,6 +30,11 @@ indexes:
   properties:
   - name: post_id
   - name: created
+
+- kind: blog_comment
+  properties:
+  - name: post_id
+  - name: created
     direction: desc
 
 - kind: blog_post
