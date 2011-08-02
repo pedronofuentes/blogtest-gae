@@ -9,3 +9,6 @@ class Post(models.Model):
   author = models.ForeignKey(User)
   created = models.DateTimeField(auto_now_add=True)
   updated = models.DateTimeField(auto_now=True)
+  
+  def __unicode__(self):
+    return u'%s' % self.title
