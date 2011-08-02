@@ -5,6 +5,8 @@
 {% block content %}
 	<div class="grid_8" id="post">
 	<h2>{{ post.title }}</h2>
+	<div class="tasks">
+		<a href="{% url blog.views.edit_post post.slug %}">Edit post</a>
 	<div class="body">
 		{{ post.body}}
 	</div>
