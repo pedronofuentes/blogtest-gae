@@ -6,7 +6,7 @@
 	<div class="grid_8" id="post">
 	<h2>{{ post.title }}</h2>
 	<div class="tasks">
-		<a href="{% url blog.views.edit_post post.slug %}">Edit post</a>
+		<a class="action" href="{% url blog.views.edit_post post.id %}">Edit post</a> <a class="delete" onclick="return confirm('Are you sure to delete this post?');" href="{% url blog.views.delete_post post.id %}">Delete post</a>
 	<div class="body">
 		{{ post.body}}
 	</div>

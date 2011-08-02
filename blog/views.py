@@ -30,8 +30,8 @@ def add_post(request):
     form = PostForm()
   return render_to_response('post_form.html', {'form':form}, RequestContext(request))
 
-def edit_post(request, slug):
-  post = get_object_or_404(Post, slug=slug)
+def edit_post(request, id):
+  post = get_object_or_404(Post, id=id)
   if request.method == 'POST':
     form = PostForm(request.POST)
     if form.is_valid():
@@ -44,3 +44,10 @@ def edit_post(request, slug):
   else:
     form = PostForm(instance=post)
   return render_to_response('post_form.html', {'form': form}, RequestContext(request))
+
+def delete_post(request, id):
+  post = get_object_or_404(Post, id=id)
+  for comment in post.comment_set.all():
+    comment.delete()
+  post.delete()
+  return HttpResponseRedirect('/')

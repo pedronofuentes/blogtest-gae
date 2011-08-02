@@ -8,6 +8,7 @@ urlpatterns = patterns('blog.views',
                                     'template_name': 'post_list.html',
                                     'template_object_name': 'post'}),
   (r'^post/add$', 'add_post'),
-  (r'^post/edit/(?P<slug>.+)$', 'edit_post'),
+  (r'^post/edit/(?P<id>\d+)$', 'edit_post'),
+  (r'^post/delete/(?P<id>\d+)', 'delete_post'),
   (r'^post/(?P<slug>.+)$', 'get_post'),
 )
