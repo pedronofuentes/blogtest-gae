@@ -7,4 +7,10 @@ urlpatterns = patterns('',
   ('^$', list_detail.object_list, {'queryset': Post.objects.order_by('-created'),
                                     'template_name': 'post_list.html',
                                     'template_object_name': 'post'}),
+  ('^post/(?P<slug>.+)', list_detail.object_detail, {
+                                    'queryset': Post.objects.all(),
+                                    'slug_field': 'slug',
+                                    'template_name': 'post_detail.html',
+                                    'template_object_name': 'post'
+  }),
 )

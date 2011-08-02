@@ -26,6 +26,12 @@ indexes:
   - name: __key__
     direction: desc
 
+- kind: blog_comment
+  properties:
+  - name: post_id
+  - name: created
+    direction: desc
+
 - kind: blog_post
   properties:
   - name: __key__
