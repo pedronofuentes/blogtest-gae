@@ -3,7 +3,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-	<div class="grid_8" id="posts">
+	<div class="grid_12" id="posts">
 	{% for post in post_list %}
 	<h2><a href="{% url blog.views.get_post post.slug %}">{{ post.title }}</a></h2>
 	<div class="extract">
