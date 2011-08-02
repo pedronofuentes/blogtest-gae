@@ -3,6 +3,9 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
+	<div class="grid_8" id="breadcrumb">
+		<a href="/">Home</a> >> {{ post.title }}
+	</div>
 	<div class="grid_8" id="post">
 	<h2>{{ post.title }}</h2>
 	<div class="tasks">
@@ -22,6 +25,8 @@
 		<div class="coment_body">
 			{{ comment.body }}
 		</div>
+		<div class="action">
+			<a class="delete" onclick="return confirm('Are you sure to delete this comment?');" href="{% url blog.views.delete_comment comment.id %}">Delete comment</a>
 		{% endfor %}
 		<form action="" method="post" accept-charset="utf-8">
 			{{ form.as_p }}

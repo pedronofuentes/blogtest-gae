@@ -11,4 +11,5 @@ urlpatterns = patterns('blog.views',
   (r'^post/edit/(?P<id>\d+)$', 'edit_post'),
   (r'^post/delete/(?P<id>\d+)', 'delete_post'),
   (r'^post/(?P<slug>.+)$', 'get_post'),
+  (r'^comment/delete/(?P<id>\d+)', 'delete_comment'),
 )

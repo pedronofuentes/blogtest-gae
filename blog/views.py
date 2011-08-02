@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
-from blog.models import Post
+from blog.models import Post, Comment
 from blog.forms import PostForm, CommentForm
 
 def get_post(request, slug):
@@ -51,3 +51,9 @@ def delete_post(request, id):
     comment.delete()
   post.delete()
   return HttpResponseRedirect('/')
+
+def delete_comment(request, id):
+  comment = get_object_or_404(Comment, id=id)
+  post = comment.post
+  comment.delete()
+  return HttpResponseRedirect(reverse('blog.views.get_post',args=(post.slug,)))
