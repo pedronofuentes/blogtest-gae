@@ -26,3 +26,6 @@ class Comment(models.Model):
   
   def __unicode__(self):
     return u'Comment id:%i (Post: %s)' % (self.id, self.post.title)
+  
+  class Meta:
+    ordering = ['-created']
