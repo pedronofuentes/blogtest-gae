@@ -25,6 +25,9 @@
 		<div class="coment_body">
 			{{ comment.body }}
 		</div>
+		<div class="time">
+			{{ comment.created }}
+		</div>
 		<div class="action">
 			<a class="delete" onclick="return confirm('Are you sure to delete this comment?');" href="{% url blog.views.delete_comment comment.id %}">Delete comment</a>
 		{% endfor %}
