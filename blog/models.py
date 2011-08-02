@@ -1,13 +1,12 @@
 # -*- coding:utf-8 -*-
 from django.db import models
-from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
 class Post(models.Model):
   title = models.CharField(max_length=255)
   slug = models.SlugField(max_length=510, blank=True)
   body = models.TextField()
-  author = models.ForeignKey(User)
+  author = models.CharField(max_length=255)
   created = models.DateTimeField(auto_now_add=True)
   updated = models.DateTimeField(auto_now=True)
   
@@ -20,7 +19,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
   post = models.ForeignKey(Post)
-  author = models.ForeignKey(User, blank=True, null=True)
+  author = models.CharField(max_length=255)
   body = models.TextField()
   created = models.DateTimeField(auto_now_add=True)
   
