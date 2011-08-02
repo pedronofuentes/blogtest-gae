@@ -27,4 +27,4 @@ class Comment(models.Model):
     return u'Comment id:%i (Post: %s)' % (self.id, self.post.title)
   
   class Meta:
-    ordering = ['-created']
+    ordering = ['created']
