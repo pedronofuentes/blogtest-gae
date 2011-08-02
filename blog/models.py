@@ -17,3 +17,12 @@ class Post(models.Model):
   def save(self, *args, **kwargs):
     self.slug = slugify(self.title)
     super(Post,self).save(*args, **kwargs)
+
+class Comment(models.Model):
+  post = models.ForeignKey(Post)
+  author = models.ForeignKey(User, blank=True, null=True)
+  body = models.TextField()
+  created = models.DateTimeField(auto_now_add=True)
+  
+  def __unicode__(self):
+    return u'Comment id:%i (Post: %s)' % (self.id, self.post.title)
